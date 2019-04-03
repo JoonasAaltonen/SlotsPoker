@@ -1,4 +1,10 @@
 ﻿using System;
+using System.Drawing;
+using System.Reflection;
+using System.Resources;
+using System.Text;
+using System.Windows.Media.Imaging;
+using QuickPoker.Properties;
 
 namespace QuickPoker
 {
@@ -14,6 +20,8 @@ namespace QuickPoker
         {
             Console.WriteLine(CardValue + " of " + CardSuit);
         }
+
+        
     }
 
     

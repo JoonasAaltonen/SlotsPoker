@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
@@ -6,34 +7,37 @@ namespace QuickPoker
 {
     public class Deck
     {
-        private Card[] _cards = new Card[54];   // 52 cards + 2 jokers
+        private List<Card> _cards = new List<Card>(54);      // 52 cards + 2 jokers
+        private Random r = new Random();
 
         public Deck()
         {
             CreateDeck();
-            PrintDeck();
+           // PrintDeck();
         }
 
         private void CreateDeck()
         {
-            int i = 0;
+            int cardNumber = 0;
+            // Loop through suits
             foreach (int suit in Enum.GetValues(typeof(CardAttributes.Suit)))
             {
-                Console.WriteLine("Suit = {0}", suit);
+                int cardValue = 0;
+                // Loop through values of each suit, don't add Jokers
                 foreach (int value in Enum.GetValues(typeof(CardAttributes.Value)))
                 {
-                    Console.WriteLine("Value = {0}", value);
-                    if (suit != (int)CardAttributes.Suit.Jokers && i > (int)CardAttributes.Value.Ace)
+                    if (suit != (int)CardAttributes.Suit.Jokers && cardValue > (int)CardAttributes.Value.Ace)
                     {
                         break;
                     }
-                    if (suit == (int) CardAttributes.Suit.Jokers && value <= (int)CardAttributes.Value.Ace)
+                    if (suit == (int)CardAttributes.Suit.Jokers && value <= (int)CardAttributes.Value.Ace)
                     {
                         continue;
                     }
-                    _cards[i] = 
-                        new Card() { CardSuit = (CardAttributes.Suit)suit, CardValue = (CardAttributes.Value)value };
-                    i++;
+                    _cards.Add(new Card { CardSuit = (CardAttributes.Suit)suit, CardValue = (CardAttributes.Value)value } ); 
+                        
+                    cardNumber++;
+                    cardValue++;
                 }
             }
         }
@@ -41,11 +45,20 @@ namespace QuickPoker
         private void PrintDeck()
         {
             {
-                foreach (var VARIABLE in _cards)
+                foreach (var card in _cards)
                 {
-                    VARIABLE.ShowCard();
+                    card.ShowCard();
                 }
             }
+        }
+
+        public Card TakeCard()
+        {
+            int index = r.Next() % _cards.Count;
+
+            Card takenCard = _cards[index];
+            _cards.RemoveAt(index);
+            return takenCard;
         }
     }
 }

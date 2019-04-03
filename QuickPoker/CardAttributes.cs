@@ -26,8 +26,11 @@
             Queen,
             King,
             Ace,
-            JokerBlack,
-            JokerRed
+            
+            // Joker colors
+            Black,
+            Red
+            
         }
     }
 }

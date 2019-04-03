@@ -34,9 +34,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -67,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardAttributes.cs" />
     <Compile Include="Deck.cs" />
@@ -75,6 +81,7 @@
     </Compile>
     <Compile Include="GameLogic.cs" />
     <Compile Include="GraphicsDrawer.cs" />
+    <Compile Include="HelperMethods.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -107,62 +114,167 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="CardImages\10C.jpg" />
-    <Resource Include="CardImages\10D.jpg" />
-    <Resource Include="CardImages\10H.jpg" />
-    <Resource Include="CardImages\10S.jpg" />
-    <Resource Include="CardImages\2C.jpg" />
-    <Resource Include="CardImages\2D.jpg" />
-    <Resource Include="CardImages\2H.jpg" />
-    <Resource Include="CardImages\2S.jpg" />
-    <Resource Include="CardImages\3C.jpg" />
-    <Resource Include="CardImages\3D.jpg" />
-    <Resource Include="CardImages\3H.jpg" />
-    <Resource Include="CardImages\3S.jpg" />
-    <Resource Include="CardImages\4C.jpg" />
-    <Resource Include="CardImages\4D.jpg" />
-    <Resource Include="CardImages\4H.jpg" />
-    <Resource Include="CardImages\4S.jpg" />
-    <Resource Include="CardImages\5C.jpg" />
-    <Resource Include="CardImages\5D.jpg" />
-    <Resource Include="CardImages\5H.jpg" />
-    <Resource Include="CardImages\5S.jpg" />
-    <Resource Include="CardImages\6C.jpg" />
-    <Resource Include="CardImages\6D.jpg" />
-    <Resource Include="CardImages\6H.jpg" />
-    <Resource Include="CardImages\6S.jpg" />
-    <Resource Include="CardImages\7C.jpg" />
-    <Resource Include="CardImages\7D.jpg" />
-    <Resource Include="CardImages\7H.jpg" />
-    <Resource Include="CardImages\7S.jpg" />
-    <Resource Include="CardImages\8C.jpg" />
-    <Resource Include="CardImages\8D.jpg" />
-    <Resource Include="CardImages\8H.jpg" />
-    <Resource Include="CardImages\8S.jpg" />
-    <Resource Include="CardImages\9C.jpg" />
-    <Resource Include="CardImages\9D.jpg" />
-    <Resource Include="CardImages\9H.jpg" />
-    <Resource Include="CardImages\9S.jpg" />
-    <Resource Include="CardImages\AC.jpg" />
-    <Resource Include="CardImages\AD.jpg" />
-    <Resource Include="CardImages\Ah.jpg" />
-    <Resource Include="CardImages\AS.jpg" />
-    <Resource Include="CardImages\J1.jpg" />
-    <Resource Include="CardImages\J2.jpg" />
-    <Resource Include="CardImages\JC.jpg" />
-    <Resource Include="CardImages\JD.jpg" />
-    <Resource Include="CardImages\JH.jpg" />
-    <Resource Include="CardImages\JS.jpg" />
-    <Resource Include="CardImages\KC.jpg" />
-    <Resource Include="CardImages\KD.jpg" />
-    <Resource Include="CardImages\KH.jpg" />
-    <Resource Include="CardImages\KS.jpg" />
-    <Resource Include="CardImages\QC.jpg" />
-    <Resource Include="CardImages\QD.jpg" />
-    <Resource Include="CardImages\QH.jpg" />
-    <Resource Include="CardImages\QS.jpg" />
+    <None Include="Resources\2C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AC.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AD.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ah.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AS.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\J1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\J2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JC.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JD.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JH.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JS.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KC.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KD.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KH.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KS.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QC.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QD.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QH.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QS.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
